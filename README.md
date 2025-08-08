@@ -1,0 +1,2 @@
+# wiprotrainingDaywise
+WiproTrainingDaywiseAssignments
