@@ -1,0 +1,41 @@
+<div class="container py-4">
+  <h2 class="mb-3">Booking</h2>
+
+  <div *ngIf="loading()" class="alert alert-info">Loading…</div>
+  <div *ngIf="error()" class="alert alert-danger">{{ error() }}</div>
+
+  <ng-container *ngIf="!loading() && !error() && flight() as f">
+    <div class="card p-3 mb-3">
+      <div class="fw-bold">{{ f.airline }} • {{ f.flightNumber }}</div>
+      <div class="small text-muted">
+        {{ f.source }} → {{ f.destination }} |
+        {{ f.departTime | date:'shortTime' }} – {{ f.arriveTime | date:'shortTime' }}
+        • {{ f.durationMinutes }} mins • Stops: {{ f.stops }}
+      </div>
+      <div class="fs-5 mt-2">₹{{ f.price | number:'1.0-0' }}</div>
+    </div>
+
+    <form [formGroup]="form" class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Passenger Name</label>
+        <input class="form-control" formControlName="name" />
+        <div class="text-danger small" *ngIf="form.controls.name.touched && form.controls.name.invalid">
+          Enter a valid name.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input class="form-control" formControlName="email" />
+        <div class="text-danger small" *ngIf="form.controls.email.touched && form.controls.email.invalid">
+          Enter a valid email.
+        </div>
+      </div>
+      <div class="col-12">
+        <button type="button" class="btn btn-primary" (click)="proceed()" [disabled]="form.invalid || loading()">
+          Proceed to Payment
+        </button>
+      </div>
+    </form>
+  </ng-container>
+</div>
+

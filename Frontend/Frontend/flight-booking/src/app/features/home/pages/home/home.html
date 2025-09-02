@@ -1,0 +1,21 @@
+<div class="container py-4">
+  <h1 class="mb-3">Find Flights</h1>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="row g-3">
+    <div class="col-md-4">
+      <label class="form-label">Source</label>
+      <input class="form-control" formControlName="source" placeholder="e.g., HYD" />
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Destination</label>
+      <input class="form-control" formControlName="destination" placeholder="e.g., BLR" />
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Travel Date</label>
+      <input type="date" class="form-control" formControlName="travelDate" />
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+</div>
+
